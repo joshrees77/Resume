@@ -5,73 +5,360 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Josh Rees – Resume</title>
   <style>
+    @font-face {
+      font-family: "Archia";
+      src: local("Archia Regular"), local("Archia-Regular");
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Archia";
+      src: local("Archia Medium"), local("Archia-Medium");
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    @font-face {
+      font-family: "Archia";
+      src: local("Archia SemiBold"), local("Archia-SemiBold");
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    @font-face {
+      font-family: "Archia";
+      src: local("Archia Bold"), local("Archia-Bold");
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    :root {
+      --ink: #172436;
+      --muted: #647083;
+      --paper: #ffffff;
+      --canvas: #f4f6f5;
+      --accent: #737983;
+      --accent-soft: #e5e7e9;
+      --rule: #d8dedb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--canvas);
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #333;
-      background-color: #fff;
-      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      padding: 56px 24px;
+      font-family: "Archia", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.48;
+      color: var(--ink);
+      background: var(--canvas);
+      transition: background-color 0.25s, color 0.25s;
+      -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 {
-      color: #111;
+
+    .resume-sheet {
+      width: min(100%, 860px);
+      margin: 0 auto;
+      padding: 54px 64px 58px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      box-shadow: 0 18px 60px rgba(16, 10, 10, 0.08);
     }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
     h1 {
-      font-size: 2em;
-      margin-bottom: 0.2em;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: clamp(38px, 6vw, 54px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.055em;
     }
+
+    h1 + p {
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: #30343a;
+    }
+
     h2 {
-      font-size: 1.4em;
-      margin-top: 1.5em;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
+
+    h2::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--accent-soft);
+    }
+
     .section {
-      margin-bottom: 1.5em;
+      margin-bottom: 32px;
     }
+
+    .section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .section > p:not(.role) {
+      max-width: 68ch;
+      margin-bottom: 0;
+      color: #28384b;
+    }
+
     .role {
-      font-weight: bold;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 22px 0 7px;
+      padding-top: 19px;
+      border-top: 1px solid var(--rule);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
     }
+
+    h2 + .role {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
     .timeframe {
-      font-style: italic;
-      font-size: 0.95em;
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      white-space: nowrap;
     }
+
     ul {
-      padding-left: 1.2em;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
-    /* Night mode styles */
+    li {
+      position: relative;
+      margin: 0 0 10px;
+      padding-left: 17px;
+      color: #2d3b4d;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      top: 0.58em;
+      left: 0;
+      width: 7px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .impact-grid {
+      margin-top: 8px;
+    }
+
+    .impact-label {
+      display: inline;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
     .dark-mode {
-      background-color: #121212;
-      color: #eee;
+      --ink: #f6f4f3;
+      --muted: #b9b2b2;
+      --paper: #171313;
+      --canvas: #0e0b0b;
+      --accent: #aeb3ba;
+      --accent-soft: #494545;
+      --rule: #3b3434;
     }
 
-    .dark-mode h1, .dark-mode h2, .dark-mode h3 {
-      color: #fff;
+    .dark-mode .section > p:not(.role),
+    .dark-mode li {
+      color: #e1dddd;
+    }
+
+    .dark-mode .impact-grid li {
+      color: #d7d2d2;
     }
 
     .toggle-button {
       position: fixed;
       top: 20px;
       right: 20px;
-      padding: 6px 12px;
-      background: #eee;
-      border: none;
+      padding: 9px 13px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(16, 10, 10, 0.08);
       cursor: pointer;
-      font-size: 0.9em;
+      font: 600 11px/1 "Archia", Arial, sans-serif;
       z-index: 1000;
     }
 
     .dark-mode .toggle-button {
-      background: #333;
-      color: #eee;
+      box-shadow: none;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .resume-sheet {
+        padding: 36px 24px 40px;
+      }
+
+      h1 + p {
+        margin-bottom: 28px;
+      }
+
+      .role {
+        display: block;
+      }
+
+      .timeframe {
+        display: block;
+        margin-top: 3px;
+      }
+
+      .toggle-button {
+        position: static;
+        display: block;
+        margin: 0 0 12px auto;
+      }
+    }
+
+    @media print {
+      @page {
+        size: letter;
+        margin: 0.4in 0.46in;
+      }
+
+      html,
+      body {
+        background: #fff;
+      }
+
+      body {
+        padding: 0;
+        color: #172436;
+        font-size: 9.4pt;
+        line-height: 1.3;
+      }
+
+      .resume-sheet {
+        width: 100%;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .toggle-button {
+        display: none;
+      }
+
+      h1 {
+        font-size: 30pt;
+      }
+
+      h1 + p {
+        margin-bottom: 16pt;
+      }
+
+      h2 {
+        margin-bottom: 9pt;
+        font-size: 8pt;
+      }
+
+      .section {
+        margin-bottom: 14pt;
+      }
+
+      .role {
+        margin-top: 9pt;
+        margin-bottom: 3pt;
+        padding-top: 8pt;
+        font-size: 9.4pt;
+      }
+
+      .timeframe {
+        font-size: 7.6pt;
+      }
+
+      li {
+        margin-bottom: 3.4pt;
+      }
+
+      .impact-grid {
+        margin-top: 3pt;
+      }
+
+      .impact-label {
+        font-size: inherit;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .dark-mode,
+      .dark-mode .section > p:not(.role),
+      .dark-mode li {
+        color: #172436;
+        background: #fff;
+      }
     }
   </style>
 </head>
 <body>
   <button class="toggle-button" onclick="toggleDarkMode()">Night Mode</button>
+
+  <main class="resume-sheet">
 
   <h1>Josh Rees</h1>
   <p>josh@reescooks.club • <a href="https://twitter.com/stableshaman" target="_blank">@stableshaman</a></p>
@@ -86,18 +373,17 @@
 
         <p class="role">ETH Strategy – Growth + Token design <span class="timeframe">Jun 2025 – Current</span></p>
     <ul>
-      <li>Tokenomics: Designed unique concentrated Launch liquidity to reduce sniping at TGE.</li>
-      <li>Fundraising: Launched presale raising 12,273 ETH </li>
-      <li>Institution Vault BD: Attracted tokenised options trade vault over 4.5m TVL.</li>
+      <li><span class="impact-label">Tokenomics:</span> Designed unique concentrated Launch liquidity to reduce sniping at TGE.</li>
+      <li><span class="impact-label">Fundraising:</span> Launched presale raising 12,273 ETH </li>
+      <li><span class="impact-label">Institution Vault BD:</span> Attracted tokenised options trade vault over 4.5m TVL.</li>
     </ul>
     
     <p class="role">Infinex – Community + Growth Lead <span class="timeframe">Mar 2024 – Apr 2025</span></p>
-    <ul>
-      <li>Campagine planning and Execution: <strong>$67M Patron NFT Sale</strong>; Managed release timelines and hot fixes with Designers and Developers. Directly reached out to KOL's asking them to participate in the sale. Posted a shareable card once once they closed. This growth loop generated momentum and fomo.</li>
-      <li>Livestream Host:Produced and hosted an interactive <strong>weekly livestream series</strong> featuring guests from Uniswap, Berachain, CowSwap, Kaito, and leading KOLs. Viewers engaged with Quiz's and prizes.</li>
-      <li>Podcast Production:Produced Live podcast on X for Kain, booked guests, and wrote notes on "current thing" topics. Repurposed clips for Instagram and Youtube.</li>
-      <li>Online events: <strong>MemeWars</strong>, a memecoin competition that taught community members how to code an ERC-20. Participants launched a coin on BASE and traded between eachothers coins. The aim was to teach them how easily low liquidity tokens can be manipulated. </li>
-      <li>BAU content calendar: Created and scheduled content Engaged with current events and community members on X, Reported metrics weekly and doubled down on successful formats. </li>
+    <ul class="impact-grid">
+      <li><span class="impact-label">Campagine planning and Execution:</span> <strong>$67M Patron NFT Sale</strong>; Managed release timelines and hot fixes with Designers and Developers. Directly reached out to KOL's asking them to participate in the sale. Posted a shareable card once once they closed. This growth loop generated momentum and fomo.</li>
+      <li><span class="impact-label">Livestream Host:</span>Produced and hosted an interactive <strong>weekly livestream series</strong> featuring guests from Uniswap, Berachain, CowSwap, Kaito, and leading KOLs. Viewers engaged with Quiz's and prizes.</li>
+      <li><span class="impact-label">Podcast Production:</span>Produced Live podcast on X for Kain, booked guests, and wrote notes on "current thing" topics. Repurposed clips for Instagram and Youtube.</li>
+      <li><span class="impact-label">BAU content calendar:</span> Created and scheduled content Engaged with current events and community members on X, Reported metrics weekly and doubled down on successful formats. </li>
       
     </ul>
 
@@ -107,29 +393,31 @@
       <li>Independently sourced and pitched token investment opportunities, Focused mostly on liquid tokens over early-stage ventures as seed rounds were often overpriced.</li>
       <li>Invested in Session, a decentralised private messaging app.</li>
       <li>Hosted developer meets to foster the community in Australia this turned into Australias largest crypto developer community, AusBuildors</li>
+    </ul>
 
     <p class="role">Volt Protocol / TRIBE DAO – Head of Community <span class="timeframe"> Oct 2021 – Dec 2022</span></p>
     <ul>
-      <li>Community management: Handled Discord, community relations, and BD outreach; shaped partner narratives and messaging.</li>
-      <li>Yield Duediligence: Led yield venue diligence, assessing AAVE, RWA options, and stablecoin LP strategies.</li>
+      <li><span class="impact-label">Community management:</span> Handled Discord, community relations, and BD outreach; shaped partner narratives and messaging.</li>
+      <li><span class="impact-label">Yield Duediligence:</span> Led yield venue diligence, assessing AAVE, RWA options, and stablecoin LP strategies.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>Side Projects</h2>
 
-    <p class="role">AusBuilders – Founder & Organizer <span class="timeframe">2022 – Present</span></p>
+    <p class="role">AusBuilders – Founder &amp; Organizer <span class="timeframe">2022 – Present</span></p>
     <ul>
       <li>Founded Australia’s largest crypto builder community with 300+ members and ~50-person meetups.</li>
       <li>Events focus on dev tips, project showcases, and builder culture; partnered with EthSydney and EthMelbourne.</li>
       <li>Our most recent meet we hosted Geoff Huntly the inventor of the Ralph Wiggum AI technique.</li>
     </ul>
 
-    <p class="role">DJ & Underground Event Organizer</p>
+    <p class="role">DJ &amp; Underground Event Organizer</p>
     <ul>
       <li>Organized and performed at underground raves.</li>
     </ul>
   </div>
+  </main>
 
   <script>
     function toggleDarkMode() {
