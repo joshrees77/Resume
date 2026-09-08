@@ -159,14 +159,46 @@
     .milestones {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px 18px;
-      margin: 0 0 14px;
-      font-weight: 700;
+      align-items: baseline;
+      gap: 4px 0;
+      margin: -2px 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      break-inside: avoid;
+      break-after: avoid;
+    }
+
+    .milestones > span {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .milestones > span + span::before {
+      content: "·";
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--muted);
+    }
+
+    .milestones strong {
       color: var(--ink);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .milestones + .impact-grid { margin-top: 0; }
+
+    @media (max-width: 480px) {
+      .milestones { display: block; margin-top: 2px; }
+      .milestones > span { display: block; white-space: normal; }
+      .milestones > span + span::before { content: none; }
     }
 
     @media print {
-      .milestones { margin-bottom: 6pt; color: #172436; }
+      .milestones { margin: 0 0 7pt; font-size: 9pt; color: #4b5563; }
+      .milestones strong { color: #172436; }
     }
 
     .timeframe {
@@ -386,7 +418,7 @@
     <h2>Experience</h2>
 
         <p class="role">ETH Strategy – Growth + Token design <span class="timeframe">Jun 2025 – Current</span></p>
-    <div class="milestones" aria-label="Milestones during this role"><span>0 → 14K X followers</span><span>12K ETH raised</span></div>
+    <div class="milestones" aria-label="Milestones during this role"><span><strong>0 → 14K</strong> X followers</span><span><strong>12K ETH</strong> raised</span></div>
     <ul>
       <li><span class="impact-label">Brand voice &amp; content:</span> Own ETH Strategy’s brand voice and all content, from planning and writing to production and publishing. Manage social accounts and community engagement.</li>
       <li><span class="impact-label">Tokenomics:</span> Designed unique concentrated Launch liquidity to reduce sniping.</li>
@@ -395,7 +427,7 @@
     </ul>
     
     <p class="role">Infinex – Community + Growth Lead <span class="timeframe">Mar 2024 – Apr 2025</span></p>
-    <div class="milestones" aria-label="Milestones during this role"><span>0 → 50K X followers</span><span>100K+ users</span><span>100M TVL</span></div>
+    <div class="milestones" aria-label="Milestones during this role"><span><strong>0 → 50K</strong> X followers</span><span><strong>100K+</strong> users</span><span><strong>100M</strong> TVL</span></div>
     <ul class="impact-grid">
       <li><span class="impact-label">Campaign planning and Execution:</span> <strong>$67M Patron NFT Sale</strong>; Managed release timelines and hot fixes with Designers and Developers. Directly reached out to KOLs asking them to participate in the sale. Posted a shareable card once they closed. This growth loop generated momentum and fomo.</li>
       <li><span class="impact-label">Livestream Host:</span> Produced and hosted <strong>Infinex Alpha Leak</strong>, a weekly livestream attracting <strong>100+ concurrent viewers and 20K impressions per episode</strong>. Ran quizzes to monitor engagement.</li>
@@ -442,3 +474,4 @@
   </script>
 </body>
 </html>
+
