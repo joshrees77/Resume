@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Josh Rees – Resume</title>
+  <title>Josh Rees – Resume &amp; Portfolio</title>
   <style>
     @font-face {
       font-family: "Archia";
@@ -155,6 +155,51 @@
       border-top: 0;
     }
 
+    .milestones {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 0;
+      margin: -2px 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      break-inside: avoid;
+      break-after: avoid;
+    }
+
+    .milestones > span {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .milestones > span + span::before {
+      content: "·";
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--muted);
+    }
+
+    .milestones strong {
+      color: var(--ink);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .milestones + .impact-grid { margin-top: 0; }
+
+    @media (max-width: 480px) {
+      .milestones { display: block; margin-top: 2px; }
+      .milestones > span { display: block; white-space: normal; }
+      .milestones > span + span::before { content: none; }
+    }
+
+    @media print {
+      .milestones { margin: 0 0 7pt; font-size: 9pt; color: #4b5563; }
+      .milestones strong { color: #172436; }
+    }
+
     .timeframe {
       flex: 0 0 auto;
       color: var(--muted);
@@ -191,6 +236,11 @@
       height: 3px;
       background: var(--accent);
     }
+
+    .tools-list li { margin-bottom: 4px; padding-left: 0; }
+    .tools-list li::before { content: none; }
+    .tools-section { break-inside: avoid; }
+    .role, h2 { break-after: avoid; }
 
     .impact-grid {
       margin-top: 8px;
@@ -353,64 +403,239 @@
         background: #fff;
       }
     }
-  </style>
-</head>
-<body>
-  <button class="toggle-button" onclick="toggleDarkMode()">Night Mode</button>
+  
+    [hidden] { display:none !important; }
+    .switchbar { width:min(100%,860px); margin:0 auto 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .switchbar small { color:var(--muted); font-size:14px; }
+    .flip-button, .preview-button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; border:1px solid var(--rule); border-radius:6px; font:600 14px/1.4 "Archia",Arial,sans-serif; text-align:center; text-decoration:none; cursor:pointer; }
+    .flip-button { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+    .preview-button { width:100%; background:var(--paper); color:var(--ink); }
+    button:focus-visible, a:focus-visible { outline:3px solid #3c83d5; outline-offset:3px; }
+    .resume-sheet { transform-origin:50% 160px; }
+    .portfolio-sheet { width:min(100%,1080px); padding:40px; }
+    .portfolio-sheet h1 { font-size:clamp(32px,5vw,44px); line-height:1.1; }
+    .portfolio-intro { font-size:16px; line-height:1.5; color:var(--muted); margin:12px 0 28px; }
+    .project-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:24px; }
+    .project { min-width:0; border:1px solid var(--rule); border-radius:10px; overflow:hidden; background:var(--paper); }
+    .project-top { padding:22px; }
+    .project-top h3 { margin:0; font-size:22px; font-weight:600; line-height:1.25; letter-spacing:-.025em; overflow-wrap:break-word; }
+    .project-top .tile-caption { margin:10px 0 0; font-size:16px; font-weight:400; line-height:1.55; letter-spacing:normal; color:var(--muted); }
+    .native-video { display:block; width:100%; height:auto; aspect-ratio:1; background:#111; }
+    .inline-video { min-width:0; padding:0 12px 8px; }
+    .inline-video .twitter-tweet { margin:0 auto !important; max-width:100% !important; }
+    .inline-video iframe { max-width:100% !important; }
+    .inline-video blockquote { margin:0; padding:16px; overflow-wrap:anywhere; }
+    .video-fallback { display:flex; align-items:center; min-height:44px; padding:10px 14px; font-size:14px; line-height:1.4; color:var(--muted); }
+    .youtube-video { background:var(--canvas); }
+    .youtube-video iframe { display:block; width:100%; aspect-ratio:16 / 9; border:0; }
+    .merch-image { display:block; background:#fff; }
+    .merch-image img { display:block; width:100%; height:auto; }
+    .project-actions { padding:12px; }
+    .dark-mode a:hover { color:var(--ink); }
+    @media screen {
+      body { padding-top:28px; }
+      .toggle-button { position:static; display:block; min-height:44px; margin:0 auto 12px; font-size:14px; box-shadow:none; }
+      #resume-view { font-size:16px; line-height:1.55; }
+      #resume-view .role { font-size:16px; }
+      #resume-view h2 { font-size:13px; }
+      #resume-view h1 + p { font-size:14px; overflow-wrap:anywhere; }
+      #resume-view .timeframe { font-size:13px; }
+      #resume-view .milestones { gap:4px 12px; margin:0 0 16px; }
+      #resume-view .milestones > span { white-space:normal; }
+      #resume-view .milestones > span + span::before { content:none; }
+    }
+    @media screen and (max-width:800px) {
+      .portfolio-sheet { padding:28px; }
+      .project-grid { gap:18px; }
+      .project-top { padding:18px; }
+    }
+    @media screen and (max-width:720px) {
+      body { padding:16px 12px 28px; }
+      .switchbar { margin-bottom:16px; }
+      .switchbar small { font-size:13px; }
+      .flip-button { padding:10px 12px; }
+      .portfolio-sheet { padding:24px 0 0; border:0; box-shadow:none; background:transparent; }
+      .portfolio-sheet > h1, .portfolio-sheet > .portfolio-intro { margin-left:6px; margin-right:6px; }
+      .project-grid { grid-template-columns:minmax(0,1fr); gap:20px; }
+      .project-top { padding:20px; }
+      .project-top h3 { font-size:22px; }
+      .inline-video { padding-left:0; padding-right:0; }
+      #resume-view { padding:28px 20px; }
+      #resume-view .role { display:block; }
+      #resume-view .timeframe { display:block; margin-top:5px; }
+    }
+    @media print {
+      .switchbar, #portfolio-view { display:none !important; }
+      #resume-view { display:block !important; transform:none !important; opacity:1 !important; }
+    }
 
-  <main class="resume-sheet">
+/* Editorial portfolio variation. Resume styles are retained. */
+@media screen {
+  body { padding: 24px clamp(18px,4vw,64px) 64px; }
+  body.portfolio-active { --ink:#151515; --muted:#5b5b60; --paper:#fff; --canvas:#fff; --rule:#d5d5d8; }
+  body.portfolio-active.dark-mode { --ink:#f6f5f8; --muted:#bfbcc6; --paper:#151417; --canvas:#151417; --rule:#444149; }
+  html { background:var(--paper); }
+  .switchbar { width:min(100%,1200px); padding:0 0 20px; margin-bottom:0; border-bottom:1px solid var(--rule); }
+  .switchbar small { color:var(--ink); font-size:16px; font-weight:600; }
+  .nav-actions { display:flex; align-items:center; gap:10px; }
+  .toggle-button { margin:0; border-radius:0; background:transparent; padding:10px 12px; }
+  .flip-button { border-radius:0; }
+  #resume-view { margin-top:28px; }
+  .portfolio-sheet { width:min(100%,1200px); padding:0; border:0; box-shadow:none; background:var(--paper); }
+  .portfolio-header { padding:48px 0 36px; }
+  .portfolio-sheet h1 { display:inline; font-size:clamp(52px,8vw,104px); font-weight:500; line-height:1.08; letter-spacing:-.065em; background:linear-gradient(transparent 64%,#d0aff0 64%,#d0aff0 94%,transparent 94%); }
+  .dark-mode .portfolio-sheet h1 { background:linear-gradient(transparent 64%,#624087 64%,#624087 94%,transparent 94%); }
+  .portfolio-intro { margin:20px 0 0; font-size:18px; color:var(--muted); }
+  .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; align-items:stretch; border-top:1px solid var(--ink); }
+  .project { display:flex; flex-direction:column; border:0; border-bottom:1px solid var(--rule); border-radius:0; padding:32px 0; overflow:visible; }
+  .project:nth-child(even) { padding-right:32px; border-right:1px solid var(--rule); }
+  .project:nth-child(odd):not(:first-child) { padding-left:32px; }
+  .project-top { padding:0 0 24px; }
+  .project-top h3 { font-size:clamp(25px,2.6vw,34px); line-height:1.15; font-weight:500; letter-spacing:-.035em; max-width:24ch; }
+  .project-top .tile-caption { margin-top:14px; line-height:1.6; max-width:52ch; }
+  .project:first-child { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0, .85fr) minmax(0,1.15fr); gap:48px; padding:32px 0; align-items:center; }
+  .project:first-child .project-top { padding:24px 0; }
+  .project:first-child h3 { font-size:clamp(32px,4vw,52px); max-width:16ch; }
+  .project:first-child .tile-caption { font-size:18px; max-width:34ch; margin-top:24px; }
+  .native-video { width:100%; max-height:600px; object-fit:contain; }
+  .inline-video { padding:0; width:100%; }
+  .inline-video .twitter-tweet { width:100% !important; }
+  .video-fallback { padding:12px 0; }
+  .youtube-video { background:transparent; }
+  .merch-image { background:#f3f3f4; }
+  .merch-image img { width:100%; height:auto; max-height:540px; object-fit:contain; }
+  .project-actions { padding:0; }
+  .preview-button { width:auto; padding:12px 0; border:0; background:transparent; border-radius:0; color:var(--muted); font-weight:400; }
+}
+@media screen and (max-width:760px) {
+  body { padding:18px 20px 40px; }
+  .switchbar { align-items:center; gap:12px; padding-bottom:18px; flex-wrap:wrap; }
+  .switchbar small { font-size:14px; }
+  .nav-actions { gap:8px; }
+  .toggle-button { font-size:14px; padding:10px; }
+  .flip-button { padding:10px 12px; }
+  .portfolio-header { padding:36px 0 28px; }
+  .portfolio-sheet h1 { font-size:clamp(48px,11vw,72px); }
+  .portfolio-intro { font-size:16px; margin-top:16px; }
+  .project-grid { grid-template-columns:minmax(0,1fr); }
+  .project, .project:nth-child(even), .project:nth-child(odd):not(:first-child), .project:first-child { display:flex; padding:28px 0; border-right:0; gap:0; }
+  .project:first-child .project-top { padding:0 0 24px; }
+  .project-top h3, .project:first-child h3 { font-size:30px; max-width:24ch; }
+  .project:first-child .tile-caption { font-size:16px; margin-top:14px; max-width:52ch; }
+  .merch-image img { max-height:580px; }
+}
+@media print { .nav-actions, .portfolio-header { display:none; } }
+
+
+.linkedin-video { min-width:0; }
+.linkedin-video iframe { display:block; width:100%; height:440px; border:0; background:#f3f3f4; }
+.matcha-preview { display:flex; flex-direction:column; justify-content:space-between; gap:40px; min-height:360px; padding:32px; background:#e0edb5; color:#243a20; text-decoration:none; }
+.matcha-preview:hover { color:#243a20; background:#d4e69d; }
+.matcha-wordmark { font-size:clamp(40px,5vw,68px); font-weight:500; line-height:1; letter-spacing:-.06em; }
+.matcha-wordmark > span { display:inline-block; margin-left:16px; font-size:.65em; }
+.matcha-domain { font-size:16px; text-decoration:underline; text-underline-offset:4px; }
+@media screen and (max-width:760px) { .linkedin-video iframe { height:400px; } .matcha-preview { min-height:300px; padding:24px; } }
+
+/* Independent desktop columns keep shorter media tiles from stretching. */
+@media screen {
+ .project-grid { align-items:start; }
+ .project-column { min-width:0; }
+ .project-column-left { order:2; padding-right:32px; border-right:1px solid var(--rule); }
+ .project-column-right { order:3; padding-left:32px; }
+ .project-column .project { display:flex; flex-direction:column; gap:0; padding:32px 0; border:0; border-bottom:1px solid var(--rule); }
+ .project-column .project .project-top { padding:0 0 24px; }
+ .project-column .project h3 { font-size:clamp(25px,2.6vw,34px); max-width:24ch; }
+ .project-column .project .tile-caption { font-size:16px; margin-top:14px; max-width:52ch; }
+}
+@media screen and (max-width:760px) {
+ .project-column { display:contents; }
+ .project-column .project { padding:28px 0; }
+ .project-column .project h3 { font-size:30px; }
+}
+
+/* Resume experience: company, role, then a quiet milestone row. */
+@media screen {
+ #resume-view .experience-role { display:flex; align-items:flex-start; gap:12px 24px; margin-bottom:14px; }
+ #resume-view .company-name { display:block; font-size:20px; line-height:1.25; font-weight:700; letter-spacing:-.025em; }
+ #resume-view .job-title { display:block; margin-top:4px; font-size:15px; line-height:1.45; font-weight:400; color:var(--muted); }
+ #resume-view .experience-role .timeframe { margin-top:4px; font-size:13px; font-weight:400; line-height:1.5; letter-spacing:0; }
+ #resume-view .milestones { display:flex; flex-wrap:wrap; align-items:stretch; gap:12px 0; margin:0 0 20px; padding:14px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+ #resume-view .milestones > span { display:block; min-width:0; padding:0 20px; font-size:13px; line-height:1.45; color:var(--muted); }
+ #resume-view .milestones > span:first-child { padding-left:0; }
+ #resume-view .milestones > span + span { border-left:1px solid var(--rule); }
+ #resume-view .milestones strong { display:block; margin-bottom:3px; font-size:21px; line-height:1.2; font-weight:600; letter-spacing:-.025em; }
+}
+@media screen and (max-width:720px) {
+ #resume-view .experience-role { flex-direction:column; gap:4px; }
+ #resume-view .experience-role .timeframe { margin-top:0; }
+ #resume-view .milestones > span { padding:0 12px; font-size:12px; }
+ #resume-view .milestones strong { font-size:19px; }
+}
+@media screen and (max-width:380px) {
+ #resume-view .milestones > span { padding:0 8px; }
+ #resume-view .milestones strong { font-size:17px; }
+}
+@media print {
+ .role-heading { display:inline; }
+ .job-title::before { content:" – "; }
+}
+</style>
+</head>
+<body class="portfolio-active">
+
+
+  <div class="switchbar"><small id="side-label">Josh Rees / Portfolio</small><div class="nav-actions"><button class="toggle-button" onclick="toggleDarkMode()">Night Mode</button><button class="flip-button" id="flip" aria-controls="resume-view portfolio-view" aria-pressed="true">↖ Flip to resume</button></div></div>
+  <main class="resume-sheet" id="resume-view" hidden>
 
   <h1>Josh Rees</h1>
   <p>josh@reescooks.club • <a href="https://twitter.com/stableshaman" target="_blank">@stableshaman</a></p>
 
   <div class="section">
     <h2>Professional Summary</h2>
-    <p>Crypto native operator experience owning the voice of large brands, just as comfortable in front of the camera as behind it.  </p>
+    <p>Crypto-native operator with a background in marketing and growth. Experienced in developing and executing creative strategies, shaping the voice of established brands and companies, and translating ideas into engaging, audience-led content. Equally comfortable in front of and behind the camera, with a strong understanding of how to grow audiences quickly and authentically.</p>
   </div>
 
   <div class="section">
     <h2>Experience</h2>
 
-        <p class="role">ETH Strategy – Growth + Token design <span class="timeframe">Jun 2025 – Current</span></p>
+        <p class="role experience-role"><span class="role-heading"><span class="company-name">ETH Strategy</span><span class="job-title">Growth + Token design</span></span><span class="timeframe">Jun 2025 – Current</span></p>
+    <div class="milestones" aria-label="Milestones during this role"><span><strong>0 → 14K</strong> X followers</span><span><strong>12K ETH</strong> raised</span></div>
     <ul>
       <li><span class="impact-label">Brand voice &amp; content:</span> Own ETH Strategy’s brand voice and all content, from planning and writing to production and publishing. Manage social accounts and community engagement.</li>
-      <li><span class="impact-label">Tokenomics:</span> Designed unique concentrated Launch liquidity to reduce sniping.</li>
       <li><span class="impact-label">Fundraising:</span> Launched presale raising 12,273 ETH </li>
       <li><span class="impact-label">Institution Vault BD:</span> Attracted tokenised options trade vault over 4.5m TVL.</li>
     </ul>
     
-    <p class="role">Infinex – Community + Growth Lead <span class="timeframe">Mar 2024 – Apr 2025</span></p>
+    <p class="role experience-role"><span class="role-heading"><span class="company-name">Infinex</span><span class="job-title">Community + Growth Lead</span></span><span class="timeframe">Mar 2024 – Apr 2025</span></p>
+    <div class="milestones" aria-label="Milestones during this role"><span><strong>0 → 50K</strong> X followers</span><span><strong>100K+</strong> users</span><span><strong>100M</strong> TVL</span></div>
     <ul class="impact-grid">
       <li><span class="impact-label">Campaign planning and Execution:</span> <strong>$67M Patron NFT Sale</strong>; Managed release timelines and hot fixes with Designers and Developers. Directly reached out to KOLs asking them to participate in the sale. Posted a shareable card once they closed. This growth loop generated momentum and fomo.</li>
-      <li><span class="impact-label">Livestream Host:</span>Produced and hosted an interactive <strong>weekly livestream series</strong> featuring guests from Uniswap, Berachain, CowSwap, Kaito, and leading KOLs. Viewers engaged with quizzes and prizes.</li>
+      <li><span class="impact-label">Livestream Host:</span> Produced and hosted <strong>Infinex Alpha Leak</strong>, a weekly livestream attracting <strong>100+ concurrent viewers and 20K impressions per episode</strong>. Ran quizzes to monitor engagement.</li>
       <li><span class="impact-label">Podcast Production:</span>Produced Live podcast on X for Kain, booked guests, and wrote notes on "current thing" topics. Repurposed clips for Instagram and YouTube.</li>
       <li><span class="impact-label">BAU content calendar:</span> Created and scheduled content Engaged with current events and community members on X, Reported metrics weekly and doubled down on successful formats. </li>
       
     </ul>
 
-    <p class="role">King River Capital – Investment Analyst <span class="timeframe">Mar 2023 – Mar 2024</span></p>
+    <p class="role experience-role"><span class="role-heading"><span class="company-name">King River Capital</span><span class="job-title">Investment Analyst</span></span><span class="timeframe">Mar 2023 – Mar 2024</span></p>
     <ul>
-      <li>Produced investment memos for prospective investments</li>
-      <li>Independently sourced and pitched token investment opportunities, Focused mostly on liquid tokens over early-stage ventures as seed rounds were often overpriced.</li>
-      <li>Invested in Session, a decentralised private messaging app.</li>
-      <li>Hosted developer meets to foster the community in Australia this turned into Australia’s largest crypto developer community, AusBuildors</li>
+      <li><span class="impact-label">Investment thesis:</span> Developed an investment thesis around peer-to-peer lending and payments, anticipating stablecoin adoption and decentralised super-apps challenging banks and social networks.</li>
+      <li><span class="impact-label">Investments:</span> Applied this thesis through an investment in Session, a decentralised private messaging app, and liquid positions in MakerDAO and Aave.</li>
     </ul>
 
-    <p class="role">Volt Protocol / TRIBE DAO – Head of Community <span class="timeframe"> Oct 2021 – Dec 2022</span></p>
-    <ul>
-      <li><span class="impact-label">Community management:</span> Handled Discord, community relations, and BD outreach; shaped partner narratives and messaging.</li>
-      <li><span class="impact-label">Yield Due diligence:</span> Led yield venue diligence, assessing AAVE, RWA options, and stablecoin LP strategies.</li>
-    </ul>
   </div>
 
   <div class="section">
     <h2>Side Projects</h2>
 
-    <p class="role">AusBuilders – Founder &amp; Organizer <span class="timeframe">2022 – Present</span></p>
+    <p class="role">AusBuilders &amp; Matcha Monday – Founder &amp; Organizer</p>
     <ul>
-      <li>Founded Australia’s largest crypto builder community with 300+ members and ~50-person meetups.</li>
-      <li>Events focus on dev tips, project showcases, and builder culture; partnered with EthSydney and EthMelbourne.</li>
-      <li>Our most recent meet we hosted Geoff Huntly the inventor of the Ralph Wiggum AI technique.</li>
+      <li>Founded <strong>AusBuilders</strong> (2022–Present), growing it to 300+ members with ~50-person meetups featuring developer talks and project showcases.</li>
+      <li>Founded <a href="https://matchamonday.net">Matcha Monday</a>, a weekly matcha meetup and online community with 200 members, running for three years.</li>
+    </ul>
+
+    <p class="role">Codex Ambassador</p>
+    <ul>
+      <li>Help people get started with Codex and host community events.</li>
     </ul>
 
     <p class="role">DJ &amp; Underground Event Organizer</p>
@@ -418,12 +643,54 @@
       <li>Organized and performed at underground raves.</li>
     </ul>
   </div>
+  <div class="section tools-section">
+    <h2>Tools</h2>
+    <ul class="tools-list">
+      <li><span class="impact-label">AI:</span> Codex, Runway</li>
+      <li><span class="impact-label">Publishing &amp; analytics:</span> Typefully, Sprout Social, YouTube Studio, X</li>
+      <li><span class="impact-label">Production &amp; editing:</span> OBS, Riverside, Premiere Pro, CapCut, DaVinci Resolve, Photoshop</li>
+      <li><span class="impact-label">Onchain operations:</span> Proficient in Safe and multisig management</li>
+    </ul>
+  </div>
   </main>
+<section class="resume-sheet portfolio-sheet" id="portfolio-view" aria-label="Portfolio"><header class="portfolio-header"><h1>Bangers</h1><p class="portfolio-intro">Content, campaigns and communities.</p></header><div class="project-grid"><article class="project project-1" style="order:1"><div class="project-top"><h3>Devconnect Bangkok activation</h3><p class="tile-caption">Hosted a rooftop party with custom decorations, merch, interviews and branded tuk-tuks.</p></div><video class="native-video" controls playsinline preload="metadata" poster="assets/infinex-bangkok-poster.jpg" aria-label="Infinex Bangkok rooftop party aftermovie"><source src="assets/infinex-bangkok-aftermovie.mp4" type="video/mp4"><a href="assets/infinex-bangkok-aftermovie.mp4">Watch the Bangkok aftermovie</a></video></article><div class="project-column project-column-left"><article class="project project-2" style="order:2"><div class="project-top"><h3>Build Australia launch video mogged by Re-Edit</h3><p class="tile-caption">Remixed the launch video of Build Australia and overtook the original in impressions.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2046808212222210338">Watch Build Australia remix on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2046808212222210338" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-4" style="order:4"><div class="project-top"><h3>Can agentic workflows solve the fuel crisis?</h3><p class="tile-caption">Long-form video on the impact of vibe coding on Australia’s fuel crisis.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2039150776384373178">Watch Timeline News — Check Petrol on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2039150776384373178" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-6" style="order:6"><div class="project-top"><h3>Matcha Monday</h3><p class="tile-caption">Founded a weekly matcha meetup and online community with 200 members, running for three years.</p></div><a class="matcha-preview" href="https://matchamonday.net" target="_blank" rel="noopener" aria-label="Visit Matcha Monday"><span class="matcha-wordmark">Matcha<br>Monday<span aria-hidden="true">↗</span></span><span class="matcha-domain">matchamonday.net</span></a></article></div><div class="project-column project-column-right"><article class="project project-3" style="order:3"><div class="project-top"><h3>Palantir for parties</h3><p class="tile-caption">Built software using posture and object detection to rate people’s vibe at a party. Installed at a gallery and live at a party.</p></div><a href="assets/palantir-for-parties.jpeg" target="_blank" rel="noopener" aria-label="View full Palantir for parties installation photo"><img src="assets/palantir-for-parties.jpeg" alt="Palantir for parties installation displayed on a television, with pose detection tracking a person in frame" width="4284" height="5712" loading="lazy" style="display:block;width:100%;height:auto"></a></article><article class="project project-5" style="order:5"><div class="project-top"><h3>Developers developers developers</h3><p class="tile-caption">Founded AusBuilders, growing it to 300+ members with developer talks and project showcases. Also an ambassador for Codex.</p></div><div class="linkedin-video"><video controls playsinline preload="metadata" poster="https://media.licdn.com/dms/image/v2/D5605AQFnbO6C8o05WQ/videocover-high/B56Z8x_zcfIMBM-/0/1783250241779?e=2147483647&amp;v=beta&amp;t=XpCl_M7TDqGQoGAWGrLJGm-U79BbMjUWTd9rHmkYOzw" aria-label="Codex Hackathon Sydney recap by Gabriel Chua" style="display:block;width:100%;height:auto;aspect-ratio:4/3;background:#111"><source src="https://dms.licdn.com/playlist/vid/v2/D5605AQFnbO6C8o05WQ/mp4-720p-30fp-crf28/B56Z8x_zcfIMB8-/0/1783250261529?e=2147483647&amp;v=beta&amp;t=C8E3x7z8ThJnQnFsweQJcrPnkMyqRx6K9g4Yyf_s7co" type="video/mp4">Your browser does not support this video. Use the LinkedIn link below to watch it.</video><a class="video-fallback" href="https://www.linkedin.com/posts/gabriel-chua_throwback-to-our-codex-hackathon-sydney-activity-7479693111045083136-IL7v" target="_blank" rel="noopener">Watch the hackathon recap on LinkedIn ↗</a></div></article></div></div></section>
 
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
   </script>
-</body>
+<script>
+const flip = document.getElementById('flip');
+const resume = document.getElementById('resume-view');
+const portfolio = document.getElementById('portfolio-view');
+let flipped = true, busy = false;
+flip.addEventListener('click', async () => {
+  if(busy) return;
+  busy=true;
+  const outgoing=flipped?portfolio:resume, incoming=flipped?resume:portfolio;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduced) await outgoing.animate([{transform:'perspective(1600px) rotateY(0deg)',opacity:1},{transform:'perspective(1600px) rotateY(-90deg)',opacity:0}],{duration:200,easing:'ease-in'}).finished;
+  outgoing.querySelectorAll("video").forEach(video=>video.pause());
+  outgoing.hidden=true; incoming.hidden=false; flipped=!flipped;
+  document.body.classList.toggle("portfolio-active",flipped);
+  if(flipped) loadPortfolioEmbeds();
+  flip.textContent=flipped?'↖ Flip to resume':'Flip to portfolio ↗';
+  flip.setAttribute('aria-pressed',String(flipped));
+  document.getElementById('side-label').textContent=flipped?'Josh Rees / Portfolio':'Josh Rees / Resume';
+  window.scrollTo({top:0,behavior:'instant'});
+  if(!reduced) await incoming.animate([{transform:'perspective(1600px) rotateY(90deg)',opacity:0},{transform:'perspective(1600px) rotateY(0deg)',opacity:1}],{duration:240,easing:'ease-out'}).finished;
+  busy=false;
+});
+let embedsStarted=false;
+function loadPortfolioEmbeds(){
+ if(embedsStarted)return;
+ embedsStarted=true;
+ const script=document.createElement('script');
+ script.src='https://platform.twitter.com/widgets.js';
+ script.async=true;
+ document.head.append(script);
+}
+loadPortfolioEmbeds();
+</script></body>
 </html>
