@@ -579,13 +579,54 @@
  .role-heading { display:inline; }
  .job-title::before { content:" – "; }
 }
+
+/* Consistent resume spacing, scoped to leave the portfolio intact. */
+@media screen {
+ body:not(.portfolio-active) .switchbar { max-width:860px; }
+ #resume-view { padding:48px 56px; margin-top:24px; font-size:16px; line-height:1.6; box-shadow:0 8px 32px rgba(16,24,40,.04); }
+ #resume-view h1 { font-size:48px; line-height:1.1; margin:0 0 10px; }
+ #resume-view h1 + p { margin:0 0 32px; font-size:14px; line-height:1.5; }
+ #resume-view .section { margin:0 0 32px; }
+ #resume-view .section:last-of-type { margin-bottom:0; }
+ #resume-view h2 { margin:0 0 16px; font-size:12px; line-height:1.4; letter-spacing:.12em; }
+ #resume-view .section > p:not(.role) { max-width:none; margin:0; }
+ #resume-view .role { margin:24px 0 10px; padding:24px 0 0; font-size:16px; line-height:1.4; }
+ #resume-view h2 + .role { margin-top:0; padding-top:0; border-top:0; }
+ #resume-view .experience-role { display:flex; align-items:flex-start; justify-content:space-between; gap:12px 20px; margin-bottom:12px; }
+ #resume-view .company-name { font-size:20px; line-height:1.3; }
+ #resume-view .job-title { margin-top:2px; font-size:15px; line-height:1.5; }
+ #resume-view .experience-role .timeframe { margin-top:4px; font-size:13px; line-height:1.5; }
+ #resume-view .milestones { display:flex; flex-wrap:wrap; gap:12px 0; margin:16px 0; padding:0; border:0; }
+ #resume-view .milestones > span { padding:0 20px; font-size:13px; line-height:1.4; }
+ #resume-view .milestones > span:first-child { padding-left:0; }
+ #resume-view .milestones strong { font-size:20px; line-height:1.3; margin-bottom:2px; }
+ #resume-view ul, #resume-view .impact-grid { margin:0; }
+ #resume-view li { margin:0 0 8px; padding-left:16px; line-height:1.6; }
+ #resume-view li:last-child { margin-bottom:0; }
+ #resume-view li::before { top:.7em; width:5px; height:2px; }
+ #resume-view .tools-list li { padding-left:0; margin-bottom:6px; }
+}
+@media screen and (max-width:720px) {
+ #resume-view { padding:28px 24px; margin-top:20px; }
+ #resume-view h1 { font-size:40px; }
+ #resume-view .experience-role { flex-direction:column; gap:4px; }
+ #resume-view .experience-role .timeframe { margin:0; }
+ #resume-view .section { margin-bottom:28px; }
+ #resume-view .milestones > span { padding:0 12px; }
+ #resume-view .milestones strong { font-size:19px; }
+}
+@media screen and (max-width:400px) {
+ #resume-view { padding:24px 18px; }
+ #resume-view .milestones > span { padding:0 8px; font-size:12px; }
+ #resume-view .milestones strong { font-size:17px; }
+}
 </style>
 </head>
-<body class="portfolio-active">
+<body>
 
 
-  <div class="switchbar"><small id="side-label">Josh Rees / Portfolio</small><div class="nav-actions"><button class="toggle-button" onclick="toggleDarkMode()">Night Mode</button><button class="flip-button" id="flip" aria-controls="resume-view portfolio-view" aria-pressed="true">↖ Flip to resume</button></div></div>
-  <main class="resume-sheet" id="resume-view" hidden>
+  <div class="switchbar"><small id="side-label">Josh Rees / Resume</small><div class="nav-actions"><button class="toggle-button" onclick="toggleDarkMode()">Night Mode</button><button class="flip-button" id="flip" aria-controls="resume-view portfolio-view" aria-pressed="false">Flip to portfolio ↗</button></div></div>
+  <main class="resume-sheet" id="resume-view">
 
   <h1>Josh Rees</h1>
   <p>josh@reescooks.club • <a href="https://twitter.com/stableshaman" target="_blank">@stableshaman</a></p>
@@ -653,7 +694,7 @@
     </ul>
   </div>
   </main>
-<section class="resume-sheet portfolio-sheet" id="portfolio-view" aria-label="Portfolio"><header class="portfolio-header"><h1>Bangers</h1><p class="portfolio-intro">Content, campaigns and communities.</p></header><div class="project-grid"><article class="project project-1" style="order:1"><div class="project-top"><h3>Devconnect Bangkok activation</h3><p class="tile-caption">Hosted a rooftop party with custom decorations, merch, interviews and branded tuk-tuks.</p></div><video class="native-video" controls playsinline preload="metadata" poster="assets/infinex-bangkok-poster.jpg" aria-label="Infinex Bangkok rooftop party aftermovie"><source src="assets/infinex-bangkok-aftermovie.mp4" type="video/mp4"><a href="assets/infinex-bangkok-aftermovie.mp4">Watch the Bangkok aftermovie</a></video></article><div class="project-column project-column-left"><article class="project project-2" style="order:2"><div class="project-top"><h3>Build Australia launch video mogged by Re-Edit</h3><p class="tile-caption">Remixed the launch video of Build Australia and overtook the original in impressions.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2046808212222210338">Watch Build Australia remix on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2046808212222210338" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-4" style="order:4"><div class="project-top"><h3>Can agentic workflows solve the fuel crisis?</h3><p class="tile-caption">Long-form video on the impact of vibe coding on Australia’s fuel crisis.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2039150776384373178">Watch Timeline News — Check Petrol on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2039150776384373178" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-6" style="order:6"><div class="project-top"><h3>Matcha Monday</h3><p class="tile-caption">Founded a weekly matcha meetup and online community with 200 members, running for three years.</p></div><a class="matcha-preview" href="https://matchamonday.net" target="_blank" rel="noopener" aria-label="Visit Matcha Monday"><span class="matcha-wordmark">Matcha<br>Monday<span aria-hidden="true">↗</span></span><span class="matcha-domain">matchamonday.net</span></a></article></div><div class="project-column project-column-right"><article class="project project-3" style="order:3"><div class="project-top"><h3>Palantir for parties</h3><p class="tile-caption">Built software using posture and object detection to rate people’s vibe at a party. Installed at a gallery and live at a party.</p></div><a href="assets/palantir-for-parties.jpeg" target="_blank" rel="noopener" aria-label="View full Palantir for parties installation photo"><img src="assets/palantir-for-parties.jpeg" alt="Palantir for parties installation displayed on a television, with pose detection tracking a person in frame" width="4284" height="5712" loading="lazy" style="display:block;width:100%;height:auto"></a></article><article class="project project-5" style="order:5"><div class="project-top"><h3>Developers developers developers</h3><p class="tile-caption">Founded AusBuilders, growing it to 300+ members with developer talks and project showcases. Also an ambassador for Codex.</p></div><div class="linkedin-video"><video controls playsinline preload="metadata" poster="https://media.licdn.com/dms/image/v2/D5605AQFnbO6C8o05WQ/videocover-high/B56Z8x_zcfIMBM-/0/1783250241779?e=2147483647&amp;v=beta&amp;t=XpCl_M7TDqGQoGAWGrLJGm-U79BbMjUWTd9rHmkYOzw" aria-label="Codex Hackathon Sydney recap by Gabriel Chua" style="display:block;width:100%;height:auto;aspect-ratio:4/3;background:#111"><source src="https://dms.licdn.com/playlist/vid/v2/D5605AQFnbO6C8o05WQ/mp4-720p-30fp-crf28/B56Z8x_zcfIMB8-/0/1783250261529?e=2147483647&amp;v=beta&amp;t=C8E3x7z8ThJnQnFsweQJcrPnkMyqRx6K9g4Yyf_s7co" type="video/mp4">Your browser does not support this video. Use the LinkedIn link below to watch it.</video><a class="video-fallback" href="https://www.linkedin.com/posts/gabriel-chua_throwback-to-our-codex-hackathon-sydney-activity-7479693111045083136-IL7v" target="_blank" rel="noopener">Watch the hackathon recap on LinkedIn ↗</a></div></article></div></div></section>
+<section class="resume-sheet portfolio-sheet" id="portfolio-view" aria-label="Portfolio" hidden><header class="portfolio-header"><h1>Bangers</h1><p class="portfolio-intro">Content, campaigns and communities.</p></header><div class="project-grid"><article class="project project-1" style="order:1"><div class="project-top"><h3>Devconnect Bangkok activation</h3><p class="tile-caption">Hosted a rooftop party with custom decorations, merch, interviews and branded tuk-tuks.</p></div><video class="native-video" controls playsinline preload="metadata" poster="assets/infinex-bangkok-poster.jpg" aria-label="Infinex Bangkok rooftop party aftermovie"><source src="assets/infinex-bangkok-aftermovie.mp4" type="video/mp4"><a href="assets/infinex-bangkok-aftermovie.mp4">Watch the Bangkok aftermovie</a></video></article><div class="project-column project-column-left"><article class="project project-2" style="order:2"><div class="project-top"><h3>Build Australia launch video mogged by Re-Edit</h3><p class="tile-caption">Remixed the launch video of Build Australia and overtook the original in impressions.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2046808212222210338">Watch Build Australia remix on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2046808212222210338" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-4" style="order:4"><div class="project-top"><h3>Can agentic workflows solve the fuel crisis?</h3><p class="tile-caption">Long-form video on the impact of vibe coding on Australia’s fuel crisis.</p></div><div class="inline-video"><blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><a href="https://x.com/stableshaman/status/2039150776384373178">Watch Timeline News — Check Petrol on X</a></blockquote><a class="video-fallback" href="https://x.com/stableshaman/status/2039150776384373178" target="_blank" rel="noopener">Open original on X ↗</a></div></article><article class="project project-6" style="order:6"><div class="project-top"><h3>Matcha Monday</h3><p class="tile-caption">Founded a weekly matcha meetup and online community with 200 members, running for three years.</p></div><a class="matcha-preview" href="https://matchamonday.net" target="_blank" rel="noopener" aria-label="Visit Matcha Monday"><span class="matcha-wordmark">Matcha<br>Monday<span aria-hidden="true">↗</span></span><span class="matcha-domain">matchamonday.net</span></a></article></div><div class="project-column project-column-right"><article class="project project-3" style="order:3"><div class="project-top"><h3>Palantir for parties</h3><p class="tile-caption">Built software using posture and object detection to rate people’s vibe at a party. Installed at a gallery and live at a party.</p></div><a href="assets/palantir-for-parties.jpeg" target="_blank" rel="noopener" aria-label="View full Palantir for parties installation photo"><img src="assets/palantir-for-parties.jpeg" alt="Palantir for parties installation displayed on a television, with pose detection tracking a person in frame" width="4284" height="5712" loading="lazy" style="display:block;width:100%;height:auto"></a></article><article class="project project-5" style="order:5"><div class="project-top"><h3>Developers developers developers</h3><p class="tile-caption">Founded AusBuilders, growing it to 300+ members with developer talks and project showcases. Also an ambassador for Codex.</p></div><div class="linkedin-video"><video controls playsinline preload="metadata" poster="https://media.licdn.com/dms/image/v2/D5605AQFnbO6C8o05WQ/videocover-high/B56Z8x_zcfIMBM-/0/1783250241779?e=2147483647&amp;v=beta&amp;t=XpCl_M7TDqGQoGAWGrLJGm-U79BbMjUWTd9rHmkYOzw" aria-label="Codex Hackathon Sydney recap by Gabriel Chua" style="display:block;width:100%;height:auto;aspect-ratio:4/3;background:#111"><source src="https://dms.licdn.com/playlist/vid/v2/D5605AQFnbO6C8o05WQ/mp4-720p-30fp-crf28/B56Z8x_zcfIMB8-/0/1783250261529?e=2147483647&amp;v=beta&amp;t=C8E3x7z8ThJnQnFsweQJcrPnkMyqRx6K9g4Yyf_s7co" type="video/mp4">Your browser does not support this video. Use the LinkedIn link below to watch it.</video><a class="video-fallback" href="https://www.linkedin.com/posts/gabriel-chua_throwback-to-our-codex-hackathon-sydney-activity-7479693111045083136-IL7v" target="_blank" rel="noopener">Watch the hackathon recap on LinkedIn ↗</a></div></article></div></div></section>
 
   <script>
     function toggleDarkMode() {
@@ -664,7 +705,7 @@
 const flip = document.getElementById('flip');
 const resume = document.getElementById('resume-view');
 const portfolio = document.getElementById('portfolio-view');
-let flipped = true, busy = false;
+let flipped = false, busy = false;
 flip.addEventListener('click', async () => {
   if(busy) return;
   busy=true;
@@ -691,6 +732,5 @@ function loadPortfolioEmbeds(){
  script.async=true;
  document.head.append(script);
 }
-loadPortfolioEmbeds();
 </script></body>
 </html>
